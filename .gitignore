@@ -1,0 +1,57 @@
+# ======================
+# Python / Jupyter artefacts
+# ======================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.dylib
+
+# Jupyter notebook checkpoints & autosaves
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# Virtual environments
+.venv/
+env/
+.conda/
+.conda_envs/
+*.env
+*.venv
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# IDE / editor settings
+.vscode/
+.idea/
+.DS_Store
+
+# ======================
+# Data folders
+# ======================
+# Ignore everything in any data/raw/ folder ...
+**/data/raw/*
+# ... except keep the .gitkeep placeholder files
+!**/data/raw/.gitkeep
+
+# also ignore processed data (Not sure if I'll have these folders.)
+**/data/processed/*
+!**/data/processed/.gitkeep
+
+# ======================
+# Miscellaneous
+# ======================
+# Log files
+*.log
+*.out
+*.err
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*.swo

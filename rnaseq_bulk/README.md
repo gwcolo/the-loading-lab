@@ -8,7 +8,7 @@ The goal of The Loading Lab is to give you **first-touch notebooks** for many co
 Some folders are still being scaffolded — I’ll be filling them in as I go.
 
 ## What to expect once complete
-- An `environment.yml` with minimal dependencies  
+- An `environment.yml` with minimal dependencies  (overwrite this)
 - A `notebooks/` folder with 1–2 simple Jupyter notebooks  
 - A `data/` folder (empty, gitignored) with pointers to public datasets  
 - This README updated with links + quickstart instructions  

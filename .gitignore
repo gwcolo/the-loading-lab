@@ -1,4 +1,9 @@
 # ======================
+# Specific Stuff
+# ======================
+private_notes.txt
+
+# ======================
 # Python / Jupyter artefacts
 # ======================
 __pycache__/

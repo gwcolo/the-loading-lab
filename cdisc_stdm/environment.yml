@@ -1,0 +1,18 @@
+name: cdisc-stdm-demo
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - jupyterlab
+  - ipykernel
+  - pandas>=2.2
+  - numpy
+  - matplotlib
+  - pyreadstat
+  - lxml
+  - ipywidgets
+  - pip
+  - pip:
+      - lifelines
+      - dataframe-image

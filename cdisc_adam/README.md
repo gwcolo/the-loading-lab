@@ -1,87 +1,132 @@
-# `adam` README
+# ADaM Demo – Loading Lab
 
-This folder contains a demo for working with **ADaM (Analysis Data Model)** datasets.  
-The data used here comes from the [PHUSE scripts repository](https://github.com/phuse-org/phuse-scripts/tree/master/data/adam), in particular the [`cdiscpilot01`](https://github.com/phuse-org/phuse-scripts/tree/master/data/adam/cdiscpilot01) example.
+This folder contains a demo for working with **CDISC ADaM (Analysis Data Model)** datasets.  
+It is part of the **Loading Lab** repository, which provides lightweight demos for different types of lab and biomedical data (microscopy, RNAseq, flow cytometry, mass spec, SDTM, etc.).  
+While ADaM originates in the clinical trials and regulatory submission world, it is included here because:
 
-**I will be using the Updated 2018 Version of the data set at <https://github.com/phuse-org/phuse-scripts/blob/master/data/adam/cdiscpilot_update1.zip>.**
+1. ADaM builds directly on SDTM and provides **analysis‑ready datasets**.  
+2. Understanding ADaM is increasingly important for connecting clinical trial data with other data sources.  
+3. Side‑by‑side with the **SDTM demo**, this helps illustrate the flow from collected tabulations (SDTM) to analysis datasets (ADaM).  
+4. I'm a mere mortal and didn't want to create another small repo to take care of.
 
 ---
 
 ## Background
 
-The Clinical Data Interchange Standards Consortium (CDISC) originally published these datasets as part of a **pilot electronic submission package**:  
-<http://www.cdisc.org/sdtmadam-pilot-project>  
-According to the ADaM-specific README file here: <https://github.com/phuse-org/phuse-scripts/blob/master/data/adam/cdiscpilot01/README.md>
-- The complete pilot package is available to CDISC members.  
-- Within that archive, the ADaM datasets are located under:  
-updated Pilot Submission Package\900172\m5\datasets\cdiscpilot01\analysis\adam\datasets\
+The **Clinical Data Interchange Standards Consortium (CDISC)** defines two foundational models for clinical trial data:  
 
-I have been able to retrieve the data from the cited CDISC pilot01 resource, but through that this direct reference might help.
+- **SDTM (Study Data Tabulation Model)** – standardized format for raw collected data.  
+- **ADaM (Analysis Data Model)** – derived datasets structured to support statistical analysis.  
 
-For further details, check the `README.md` included with the PHUSE/CDISC data.
+This demo uses the **CDISC Pilot 01 (updated 2018)** ADaM data, made publicly available by PHUSE:  
+<https://github.com/phuse-org/phuse-scripts/blob/master/data/adam/cdiscpilot_update1.zip>
+
+The original pilot project is described here:  
+<http://www.cdisc.org/sdtmadam-pilot-project>
 
 ---
 
-## Dataset Contents
+## Data Contents
 
-The demo dataset includes the following files:
+The raw datasets are provided in **SAS XPORT (.xpt)** format – the FDA‑required standard for electronic submission.  
+They include subject‑level data, adverse events, labs, vitals, questionnaires, and survival analysis datasets.  
 
-- `README.md`  
+Example files in `data/raw/` include:
+
+- `adsl.xpt` – Subject‑Level Analysis Dataset  
 - `adae.xpt` – Adverse Events Analysis Dataset  
-- `adlbc.xpt` – Laboratory Chemistry Analysis Dataset  
-- `adlbh.xpt` – Laboratory Hematology Analysis Dataset  
-- `adlbhy.xpt` – Laboratory Hy’s Law Analysis Dataset  
-- `adqsadas.xpt` – Alzheimer’s Disease Assessment Scale (ADAS) Questionnaire  
-- `adqscibc.xpt` – Clinical Global Impression of Change (CGI-C) Questionnaire  
-- `adqsnpix.xpt` – Neuropsychological Inventory (NPI-X) Questionnaire  
-- `adsl.xpt` – Subject-Level Analysis Dataset  
-- `adtte.xpt` – Time-to-Event Analysis Dataset  
 - `advs.xpt` – Vital Signs Analysis Dataset  
-- `dataguide.pdf` – Data Guide  
-- `define-v1-updated-html.xsl` – Define-XML Stylesheet  
-- `define.pdf` – Define Document (PDF)  
-- `define.xml` – Define-XML Metadata  
+- `adlbc.xpt`, `adlbh.xpt`, `adlbhy.xpt` – Laboratory Analysis Datasets (Chemistry, Hematology, Hy’s Law)  
+- `adtte.xpt` – Time‑to‑Event Analysis Dataset (e.g. survival)  
+- `adadas.xpt`, `adcibc.xpt`, `adnpix.xpt` – Questionnaire Analysis Datasets  
+- `define.xml` – Metadata describing all datasets and variables  
+
+The `figures/` folder contains sample outputs created by the demo notebook, such as dataset previews, patient counts, and summaries of vitals and labs.
 
 ---
 
-## Notes
+## How to Get the Data
 
-- These files are provided in **XPT (SAS transport) format**, the FDA-required format for regulatory submissions.  
-- The demo notebooks will show how to:
-1. Load `.xpt` files into Python.  
-2. Explore key structures (variables, metadata, relationships).  
-3. Make simple plots or summaries.  
+You can download the updated **CDISC Pilot 01 ADaM data** directly from PHUSE:  
+<https://github.com/phuse-org/phuse-scripts/blob/master/data/adam/cdiscpilot_update1.zip>
+
+You do *not* need to download the entire PHUSE repository. You can extract just the ADaM folder (`cdiscpilot01`) using Subversion or a zip download.
+
+---
+
+## Notebook Workflow
+
+The notebook [`01_load_adam_xpt_files.ipynb`](notebooks/01_load_adam_xpt_files.ipynb) demonstrates how to:
+
+1. Load `.xpt` files into Python with `pyreadstat`.  
+2. Inspect the structure of common ADaM datasets.  
+3. Generate preview tables and plots, for example:  
+
+### Preview of ADLBH Hematology Labs
+<img src="figures/00_df_preview_adlbh.jpg" alt="ADLBH sample rows" width="800">
+
+### Preview of ADLBC Clinical Chemistry Labs
+<img src="figures/01_df_preview_adlbc.jpg" alt="ADLBC sample rows" width="800">
+
+### Patients per Treatment Arm by Site
+<img src="figures/02_patients_per_site.jpg" alt="Patients per Treatment Arm by Site" width="800">
+
+### Vital Sign Parameters Available in ADVS
+<img src="figures/03_vitalsign_params_available_advs.jpg" alt="Vital Sign Params" width="800">
+
+### Heart Rate Quantiles + Histogram
+<img src="figures/04_heart_rate_quantiles_plus_hist.jpg" alt="Heart Rate Quantiles" width="800">
+
+### Subject Vital Signs Over Time
+<img src="figures/05_subject_vitals_timeseries.jpg" alt="Subject Vitals Timeseries" width="800">
+
+### Laboratory Parameters Available in ADLBC
+<img src="figures/06_lab_params_available_adlbc.jpg" alt="Lab Params" width="800">
+
+### Bilirubin Quantiles + Histogram
+<img src="figures/07_bilirubin_quantiles_plus_hist.jpg" alt="Bilirubin Quantiles" width="800">
 
 ---
 
-## How to Use
+## Dependencies
 
-1. Download the ADaM sample data from the [PHUSE GitHub repository](https://github.com/phuse-org/phuse-scripts/tree/master/data/adam/cdiscpilot01).  
-2. Place the files into the `data/raw/` folder.  
-3. Use the notebooks in this directory to load and explore the datasets.  
+To install the environment, use the included `environment.yml` file:
 
-## Downloading the ADaM Data (single folder)
+```bash
+conda env create -f environment.yml
+conda activate cdisc-adam-demo
+```
 
-You don’t need to download the entire PHUSE repository — you can grab just the `cdiscpilot01` directory using Subversion (`svn`).
-
-- **macOS**  
-  Install Subversion if needed:  
-  ```bash
-  brew install svn
-  ```  
-  Then run:  
-  ```bash
-  svn export https://github.com/phuse-org/phuse-scripts/trunk/data/adam/cdiscpilot01
-  ```
-
-- **Windows**  
-  1. Download and install [TortoiseSVN](https://tortoisesvn.net/downloads.html).  
-  2. In File Explorer, right-click in your target folder and select:  
-     **SVN Checkout...**  
-  3. Enter this URL:  
-     ```
-     https://github.com/phuse-org/phuse-scripts/trunk/data/adam/cdiscpilot01
-     ```  
-  4. Click **OK** — only the `cdiscpilot01` folder will be downloaded.  
+This environment includes the main libraries for working with XPT files, dataframes, and plots.
 
 ---
+
+## Relation to SDTM Demo
+
+This ADaM demo complements the **SDTM demo** folder within the Loading Lab repository.  
+Together they highlight the workflow of clinical trial data:  
+
+- **SDTM** – standardized *tabulations* of collected data.  
+- **ADaM** – derived *analysis datasets* built to support statistical modeling and inference.  
+
+Working through both demos provides a clear picture of how raw trial data becomes analysis‑ready.
+
+---
+
+## Disclaimer
+
+⚠️ **Educational Use Only**  
+This demo is provided for learning purposes only.  
+- It is **not** suitable for regulatory submission.  
+- It does not generate CDISC‑compliant tables, listings, or figures (TLFs).  
+- The goal is simply to show where to obtain example ADaM data and how to load it into Python.
+
+---
+
+## References & Resources
+
+- [CDISC ADaM Standards](https://www.cdisc.org/standards/foundational/adam)  
+- [CDISC SDTM Standards](https://www.cdisc.org/standards/foundational/sdtm)  
+- [PHUSE ADaM Pilot Data](https://github.com/phuse-org/phuse-scripts/tree/master/data/adam)  
+- [FDA Study Data Standards Resources](https://www.fda.gov/industry/study-data-standards-resources)
+

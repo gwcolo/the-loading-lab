@@ -53,6 +53,8 @@ Enjoy, and I hope this helps you learn and have fun!
 
 
 ## ✅ Modules included
+- `cdisc_adam/` — ADaM .xpt & define.xml files
+- `cdisc_stdm/` — STDM .xpt & define.xml files
 - `flow_cytometry/` — FCS files (CyTOF/flow): channels, FSC/SSC, histograms
 
 ## 🏗️ Road Map / Under Construction

@@ -23,7 +23,7 @@ This demo uses the **CDISC Pilot 01 (updated 2018)** ADaM data, made publicly av
 
 The original pilot project is described here:  
 <http://www.cdisc.org/sdtmadam-pilot-project>
-
+ 
 ---
 
 ## Data Contents
